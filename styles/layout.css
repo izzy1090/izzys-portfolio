@@ -1,0 +1,22 @@
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#header {
+    background: #1abc9c; 
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#footer {
+    background: #93bc1a;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}

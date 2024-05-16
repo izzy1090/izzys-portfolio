@@ -1,0 +1,9 @@
+.pageWrapper {
+    display: flex;
+    margin: 30px;
+    padding: 20px;
+}
+
+.pageWrapper div {
+    padding: 40px;
+}
