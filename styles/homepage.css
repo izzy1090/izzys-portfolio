@@ -1,15 +1,22 @@
-.projectWrapper {
-    height: 100%;
+#projectContainer {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#projectWrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-left: 200px;
 }
 
 .project {
     box-sizing: border-box;
     height: 500px;
-    width: 700px;
+    min-width: 700px;
     margin: 20px;
     border: solid 1px;
 }
