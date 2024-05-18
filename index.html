@@ -1,16 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0;">
+    <link rel="stylesheet" href="./styles/locomotive-scroll.css">
     <link rel="stylesheet" href="./styles/layout.css">
     <link rel="stylesheet" href="./styles/homepage.css">
+    
 </head>
 <body>
     <header id="header">header</header>
-        <wrapper class="pageWrapper">
-            <div>1st project</div>
-            <div>2nd project</div>
-            <div>3rd project</div>
-        </wrapper>
+    <main id="app">
+        <div data-scroll-container>
+            <div data-scroll-section> 
+                <div class="projectWrapper" >
+                    <div class="project" data-scroll>1st project</div>
+                    <div class="project" data-scroll>2nd project</div>
+                    <div class="project" data-scroll>3rd project</div>
+                </div>
+            </div>
+        </div>
+    </main>
     <footer id="footer">footer</footer>
+
 </body>
+<script src="./scripts/locomotive-scroll.min.js"></script>
+<script>
+        var scroll = new LocomotiveScroll({
+        el: document.querySelector('[data-scroll-container]'),
+        smooth: true,
+        multiplier: 0.5,
+        direction: "horizontal",
+        smartphone: {
+            smooth: true,
+            direction: "horizontal",
+        },
+        tablet: {
+        smooth: true,
+        direction: "horizontal",
+        }
+        });
+        console.log(scroll)
+</script>
 </html> 
