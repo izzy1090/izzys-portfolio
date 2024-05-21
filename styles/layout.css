@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .c-scrollbar_thumb{
@@ -15,12 +16,18 @@ body {
     height: 100%;
 }
 
-#header, footer {
+#header, #footer {
+    display: flex;
+    flex-direction: row;
     background: #1abc9c; 
     position: absolute;
     width: 100%;
     text-align: center;
-    padding: 50px;
+    padding: 20px;
+}
+
+.nav > div {
+    padding: 10px;
 }
 
 #header {

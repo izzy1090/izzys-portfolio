@@ -8,25 +8,77 @@
     
 </head>
 <body>
-    <header id="header">header</header>
+    <header id="header">
+        <div class="nav">
+            <div>home</div>
+            <div>about</div>
+            <div>contact</div>
+        </div>
+    </header>
     <main id="app">
-        <div data-scroll-container>
-            <div data-scroll-section> 
-                <div id="projectContainer"> 
-                    <div id="projectWrapper">
-                        <div class="project" data-scroll>1st project</div>
-                        <div class="project" data-scroll>2nd project</div>
-                        <div class="project" data-scroll>3rd project</div>
+        <!-- <div data-scroll-container>
+            <div data-scroll-section>  -->
+            <div id="projectContainer"> 
+                <div id="projectWrapper">
+                    <div id="edieTempleton" class="edieContainer">
+                        <img height="577px" width="577px" 
+                            src="./assets/Mark-color-is-121212.png"></img>
+                    </div>
+                    <div id="alitoura"  class="alitouraContainer">
+                        <img width="1125" height="1500" 
+                            src="./assets/Commemorative-Print.jpg"></img>
+                    </div>
+                    <div id="otherStuff" class="otherStuffContainer">
+                        <div>
+                            other things
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <!-- </div>
+        </div> -->
     </main>
-    <footer id="footer">footer</footer>
+    <footer id="footer">
+        <div>linkedin</div>
+        <div>email</div>
+        <div>instagram</div>
+    </footer>
 
 </body>
 <script src="./scripts/locomotive-scroll.min.js"></script>
 <script>
+    const projects = ['edieTempleton', 'alitoura', 'otherStuff'];
+
+    // expands a project when a user hovers over a project
+    window.addEventListener('mouseover', function (event)
+    {
+        for (let i = 0; i < projects.length; i++)
+        {
+            if (projects[i] === event.target.id)
+            {
+                event.target.classList.add('expandContainer');
+            }
+        }
+    })
+
+    // collapses a project the user hovers off
+    window.addEventListener('mouseout', function(event)
+    {
+        const collapseContainer = document.querySelector('.collapseContainer')
+        for (let i = 0; i < projects.length; i++)
+        {
+            if (projects[i] === event.target.id)
+            {
+                event.target.classList.remove('expandContainer');
+                event.target.classList.add('collapseContainer');
+                event.target.addEventListener('transitionend', ()=>{
+                    event.target.classList.remove('collapseContainer');
+                }, {once: true})
+            }
+        }
+    })
+</script>
+<!-- <script>
         var scroll = new LocomotiveScroll({
         el: document.querySelector('[data-scroll-container]'),
         smooth: true,
@@ -42,5 +94,5 @@
         }
         });
         console.log(scroll)
-</script>
+</script> -->
 </html> 

@@ -10,13 +10,53 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-left: 200px;
+    height: 50vh;
+}
+
+.edieContainer, .alitouraContainer, .otherStuffContainer {
+    box-sizing: border-box;
+    width: 100px;
+    height: 100%;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.otherStuffContainer {
+    border: 1px solid black;
+}
+
+.alitouraContainer {
+    overflow: hidden;
+}
+
+.alitouraContainer > img {
+    height: 100%;
+    width: auto;
+    pointer-events: none;
+}
+
+.edieContainer {
+    background-color: rgb(249, 245, 232);
+}
+
+.edieContainer > img {
+    padding: 5px;
+    height: auto;
+    width: 100%;
 }
 
 .project {
-    box-sizing: border-box;
-    height: 500px;
-    min-width: 700px;
-    margin: 20px;
     border: solid 1px;
+}
+
+.expandContainer {
+    transform: scaleX(2);
+    transition: transform 1s;
+}
+
+.collapseContainer {
+    transform: scaleX(1);
+    transition: transform 1s;
 }
