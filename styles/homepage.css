@@ -15,6 +15,7 @@
 
 .edieContainer, .alitouraContainer, .otherStuffContainer {
     box-sizing: border-box;
+    cursor: pointer;
     width: 100px;
     height: 100%;
     margin: 20px;
@@ -44,19 +45,19 @@
 .edieContainer > img {
     padding: 5px;
     height: auto;
-    width: 100%;
+    width: 5rem;
 }
 
 .project {
     border: solid 1px;
 }
 
-.expandContainer {
-    transform: scaleX(2);
-    transition: transform 1s;
+.expandProject {
+    width: 500px;
+    transition: width 700ms;
 }
 
-.collapseContainer {
-    transform: scaleX(1);
-    transition: transform 1s;
+.collapseProject {
+    width: 100px;
+    transition: width 700ms;
 }

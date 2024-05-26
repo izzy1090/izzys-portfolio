@@ -21,7 +21,7 @@
             <div id="projectContainer"> 
                 <div id="projectWrapper">
                     <div id="edieTempleton" class="edieContainer">
-                        <img height="577px" width="577px" 
+                        <img id="edieChildren" height="577px" width="577px" 
                             src="./assets/Mark-color-is-121212.png"></img>
                     </div>
                     <div id="alitoura"  class="alitouraContainer">
@@ -49,6 +49,13 @@
 <script>
     const projects = ['edieTempleton', 'alitoura', 'otherStuff'];
 
+    // Edie's site materials
+    const edieContainer = document.querySelector('.edieContainer');
+    const edieChildren = document.querySelector('#edieChildren');
+    const edieVideo = document.createElement('div');
+    
+    edieVideo.innerHTML = `<video width='500px'><source src='./assets/edie-templeton.mov' controls="controls"></source></video>`;
+
     // expands a project when a user hovers over a project
     window.addEventListener('mouseover', function (event)
     {
@@ -56,7 +63,15 @@
         {
             if (projects[i] === event.target.id)
             {
-                event.target.classList.add('expandContainer');
+                event.target.classList.add('expandProject');
+                event.target.addEventListener('transitionend', ()=>{
+                    if (projects[i] === 'edieTempleton')
+                    {
+                        edieChildren.style.display = 'none';
+                        edieContainer.appendChild(edieVideo);
+                    }
+                })
+                
             }
         }
     })
@@ -64,16 +79,21 @@
     // collapses a project the user hovers off
     window.addEventListener('mouseout', function(event)
     {
-        const collapseContainer = document.querySelector('.collapseContainer')
+        const collapseContainer = document.querySelector('.collapseProject')
         for (let i = 0; i < projects.length; i++)
         {
             if (projects[i] === event.target.id)
             {
-                event.target.classList.remove('expandContainer');
-                event.target.classList.add('collapseContainer');
+                event.target.classList.remove('expandProject');
+                event.target.classList.add('collapseProject');
                 event.target.addEventListener('transitionend', ()=>{
-                    event.target.classList.remove('collapseContainer');
-                }, {once: true})
+                if (event.target.id === 'edieTempleton')
+                {
+                    edieChildren.style.display = '';
+                    edieVideo.style.display = 'none';
+                }
+                    event.target.classList.remove('collapseProject');
+                }, {once: true});
             }
         }
     })
