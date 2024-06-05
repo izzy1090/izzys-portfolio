@@ -13,6 +13,10 @@
     height: 50vh;
 }
 
+.project {
+    border: solid 1px;
+}
+
 .edieContainer, .alitouraContainer, .otherStuffContainer {
     box-sizing: border-box;
     cursor: pointer;
@@ -48,12 +52,17 @@
     width: 5rem;
 }
 
-.project {
-    border: solid 1px;
+#edieLogo {
+    pointer-events: none;
 }
 
-.expandProject {
+.edieVideo {
+    display: flex;
+}
+
+.expandEdie {
     width: 500px;
+    height: 281px;
     transition: width 700ms;
 }
 

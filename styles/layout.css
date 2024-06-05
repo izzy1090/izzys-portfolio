@@ -4,10 +4,6 @@ body {
     overflow: hidden;
 }
 
-.c-scrollbar_thumb{
-    background: none;
-}
-
 #app {
     position: fixed;
     top: 0;
@@ -26,12 +22,12 @@ body {
     padding: 20px;
 }
 
-.nav > div {
-    padding: 10px;
-}
-
 #header {
     top: 0;
+}
+
+#header > div, #footer > div {
+    padding: 5px;
 }
 
 #footer {

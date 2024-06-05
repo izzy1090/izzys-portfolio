@@ -2,41 +2,33 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width; initial-scale=1.0;">
-    <link rel="stylesheet" href="./styles/locomotive-scroll.css">
     <link rel="stylesheet" href="./styles/layout.css">
     <link rel="stylesheet" href="./styles/homepage.css">
-    
 </head>
 <body>
     <header id="header">
-        <div class="nav">
-            <div>home</div>
-            <div>about</div>
-            <div>contact</div>
-        </div>
+        <div>home</div>
+        <div>about</div>
+        <div>contact</div>
     </header>
     <main id="app">
-        <!-- <div data-scroll-container>
-            <div data-scroll-section>  -->
-            <div id="projectContainer"> 
-                <div id="projectWrapper">
-                    <div id="edieTempleton" class="edieContainer">
-                        <img id="edieChildren" height="577px" width="577px" 
-                            src="./assets/Mark-color-is-121212.png"></img>
-                    </div>
-                    <div id="alitoura"  class="alitouraContainer">
-                        <img width="1125" height="1500" 
-                            src="./assets/Commemorative-Print.jpg"></img>
-                    </div>
-                    <div id="otherStuff" class="otherStuffContainer">
-                        <div>
-                            other things
-                        </div>
+        <div id="projectContainer"> 
+            <div id="projectWrapper">
+                <div id="edieProject" class="edieContainer">
+                    <img id="edieLogo" height="577px" width="577px" 
+                        src="./assets/Mark-color-is-121212.png"></img>
+                </div>
+                <div id="alitouraProject"  class="alitouraContainer">
+                    <img width="1125" height="1500" 
+                        src="./assets/Commemorative-Print.jpg"></img>
+                </div>
+                <div id="otherStuff" class="otherStuffContainer">
+                    <div>
+                        other things
                     </div>
                 </div>
             </div>
-            <!-- </div>
-        </div> -->
+        </div>
     </main>
     <footer id="footer">
         <div>linkedin</div>
@@ -45,74 +37,65 @@
     </footer>
 
 </body>
-<script src="./scripts/locomotive-scroll.min.js"></script>
 <script>
-    const projects = ['edieTempleton', 'alitoura', 'otherStuff'];
+    const projects = ['edieProject', 'alitouraProject', 'otherStuff'];
 
     // Edie's site materials
     const edieContainer = document.querySelector('.edieContainer');
-    const edieChildren = document.querySelector('#edieChildren');
-    const edieVideo = document.createElement('div');
-    
-    edieVideo.innerHTML = `<video width='500px'><source src='./assets/edie-templeton.mov' controls="controls"></source></video>`;
+    const edieChildren = document.querySelector('#edieLogo');
+    const edieVideo = document.createElement('div');    
+    edieVideo.innerHTML = `
+        <video 
+            class="edieVideo" 
+            width='500px' height="281px" 
+            autoplay loop
+        >
+            <source 
+                src='./assets/edie-templeton.mov' 
+                controls="controls"
+            ></source>
+        </video>`;
 
     // expands a project when a user hovers over a project
-    window.addEventListener('mouseover', function (event)
+    window.addEventListener('click', function (event)
     {
         for (let i = 0; i < projects.length; i++)
         {
             if (projects[i] === event.target.id)
             {
-                event.target.classList.add('expandProject');
+                event.target.classList.add('expandEdie');
+                event.target.classList.add('projectActive');
                 event.target.addEventListener('transitionend', ()=>{
-                    if (projects[i] === 'edieTempleton')
+                    if (projects[i] === 'edieProject')
                     {
                         edieChildren.style.display = 'none';
                         edieContainer.appendChild(edieVideo);
-                    }
+                    } 
                 })
-                
-            }
+            } 
         }
     })
 
-    // collapses a project the user hovers off
-    window.addEventListener('mouseout', function(event)
-    {
-        const collapseContainer = document.querySelector('.collapseProject')
-        for (let i = 0; i < projects.length; i++)
-        {
-            if (projects[i] === event.target.id)
-            {
-                event.target.classList.remove('expandProject');
-                event.target.classList.add('collapseProject');
-                event.target.addEventListener('transitionend', ()=>{
-                if (event.target.id === 'edieTempleton')
-                {
-                    edieChildren.style.display = '';
-                    edieVideo.style.display = 'none';
-                }
-                    event.target.classList.remove('collapseProject');
-                }, {once: true});
-            }
-        }
-    })
+    // // collapses a project the user hovers off
+    // window.addEventListener('mouseout', function(event)
+    // {
+    //     const collapseContainer = document.querySelector('.collapseProject')
+    //     for (let i = 0; i < projects.length; i++)
+    //     {
+    //         if (projects[i] === event.target.id)
+    //         {
+    //             event.target.classList.remove('expandProject');
+    //             event.target.classList.add('collapseProject');
+    //             event.target.addEventListener('transitionend', ()=>{
+    //             if (event.target.id === 'edieProject')
+    //             {
+    //                 edieChildren.style.display = '';
+    //                 edieVideo.style.display = 'none';
+    //             }
+    //                 event.target.classList.remove('collapseProject');
+    //             }, {once: true});
+    //         }
+    //     }
+    // })
 </script>
-<!-- <script>
-        var scroll = new LocomotiveScroll({
-        el: document.querySelector('[data-scroll-container]'),
-        smooth: true,
-        multiplier: 0.5,
-        direction: "horizontal",
-        smartphone: {
-            smooth: true,
-            direction: "horizontal",
-        },
-        tablet: {
-        smooth: true,
-        direction: "horizontal",
-        }
-        });
-        console.log(scroll)
-</script> -->
 </html> 
