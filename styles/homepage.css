@@ -6,11 +6,12 @@
 }
 
 #projectWrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    display: grid;
     height: 50vh;
+    width: fit-content;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    overflow-y: hidden;
 }
 
 .project {
@@ -18,14 +19,16 @@
 }
 
 .edieContainer, .alitouraContainer, .otherStuffContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-row: 1;
+    place-self: center;
     box-sizing: border-box;
     cursor: pointer;
     width: 100px;
     height: 100%;
     margin: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .otherStuffContainer {
@@ -60,13 +63,14 @@
     display: flex;
 }
 
-.expandEdie {
+.expandProject {
     width: 500px;
     height: 281px;
-    transition: width 700ms;
+    transition: height 700ms, width 700ms;
 }
 
 .collapseProject {
     width: 100px;
-    transition: width 700ms;
+    height: 100%;
+    transition: width 700ms, height 700ms;
 }

@@ -38,7 +38,8 @@
 
 </body>
 <script>
-    const projects = ['edieProject', 'alitouraProject', 'otherStuff'];
+    const projectContainer = document.querySelector('#projectContainer');
+    const project = ['edieProject', 'alitouraProject', 'otherStuff'];
 
     // Edie's site materials
     const edieContainer = document.querySelector('.edieContainer');
@@ -50,23 +51,22 @@
             width='500px' height="281px" 
             autoplay loop
         >
-            <source 
-                src='./assets/edie-templeton.mov' 
-                controls="controls"
-            ></source>
-        </video>`;
+            <source src='./assets/edie-templeton.mov'></source>
+        </video>
+        `;
+        // <div style="width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; display: flex; justify-content: center; align-items: center; background-color: black;"></div>
 
     // expands a project when a user hovers over a project
     window.addEventListener('click', function (event)
     {
-        for (let i = 0; i < projects.length; i++)
+        for (let i = 0; i < project.length; i++)
         {
-            if (projects[i] === event.target.id)
+            if (project[i] === event.target.id)
             {
-                event.target.classList.add('expandEdie');
+                event.target.classList.add('expandProject');
                 event.target.classList.add('projectActive');
                 event.target.addEventListener('transitionend', ()=>{
-                    if (projects[i] === 'edieProject')
+                    if (project[i] === 'edieProject')
                     {
                         edieChildren.style.display = 'none';
                         edieContainer.appendChild(edieVideo);
@@ -75,27 +75,5 @@
             } 
         }
     })
-
-    // // collapses a project the user hovers off
-    // window.addEventListener('mouseout', function(event)
-    // {
-    //     const collapseContainer = document.querySelector('.collapseProject')
-    //     for (let i = 0; i < projects.length; i++)
-    //     {
-    //         if (projects[i] === event.target.id)
-    //         {
-    //             event.target.classList.remove('expandProject');
-    //             event.target.classList.add('collapseProject');
-    //             event.target.addEventListener('transitionend', ()=>{
-    //             if (event.target.id === 'edieProject')
-    //             {
-    //                 edieChildren.style.display = '';
-    //                 edieVideo.style.display = 'none';
-    //             }
-    //                 event.target.classList.remove('collapseProject');
-    //             }, {once: true});
-    //         }
-    //     }
-    // })
 </script>
 </html> 
