@@ -17,6 +17,9 @@
                 <div id="edieProject" class="edieContainer">
                     <img id="edieLogo" height="577px" width="577px" 
                         src="./assets/Mark-color-is-121212.png"></img>
+                    <video class="edieVideo" width='500px' height="281px" autoplay loop>
+                        <source src='./assets/edie-templeton.mov'></source>
+                    </video>
                 </div>
                 <div id="alitouraProject"  class="alitouraContainer">
                     <img width="1125" height="1500" 
@@ -38,41 +41,51 @@
 
 </body>
 <script>
-    const projectContainer = document.querySelector('#projectContainer');
+    const projectWrapper = document.querySelector('#projectWrapper');
     const project = ['edieProject', 'alitouraProject', 'otherStuff'];
 
     // Edie's site materials
     const edieContainer = document.querySelector('.edieContainer');
-    const edieChildren = document.querySelector('#edieLogo');
-    const edieVideo = document.createElement('div');    
-    edieVideo.innerHTML = `
-        <video 
-            class="edieVideo" 
-            width='500px' height="281px" 
-            autoplay loop
-        >
-            <source src='./assets/edie-templeton.mov'></source>
-        </video>
-        `;
-        // <div style="width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; display: flex; justify-content: center; align-items: center; background-color: black;"></div>
+    const edieLogo = document.querySelector('#edieLogo');
+    const edieVideo = document.querySelector('.edieVideo');
+    // <div style="width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; display: flex; justify-content: center; align-items: center; background-color: black;"></div>
 
     // expands a project when a user hovers over a project
     window.addEventListener('click', function (event)
     {
-        for (let i = 0; i < project.length; i++)
-        {
-            if (project[i] === event.target.id)
+        setTimeout(()=>{
+            for (let i = 0; i < project.length; i++)
             {
-                event.target.classList.add('expandProject');
-                event.target.classList.add('projectActive');
-                event.target.addEventListener('transitionend', ()=>{
-                    if (project[i] === 'edieProject')
-                    {
-                        edieChildren.style.display = 'none';
-                        edieContainer.appendChild(edieVideo);
-                    } 
-                })
-            } 
+                if (project[i] === event.target.id)
+                {
+                    event.target.classList.add('expandProject');
+                    event.target.classList.add('projectActive');
+                    event.target.addEventListener('transitionend', ()=>{
+                        if (project[i] === 'edieProject')
+                        {
+                            edieLogo.style.display = 'none';
+                            edieVideo.style.display = 'flex';
+                        } 
+                    })
+                } 
+            }
+        }, 10);
+        
+        for (let i = 0; i < projectWrapper.children.length; i++){
+            if (projectWrapper.children[i].classList.contains('projectActive'))
+            {    
+                // projectWrapper.children[i].style.width = '100px';
+                // projectWrapper.children[i].style.transition = 'width 700ms'
+                // projectWrapper.children[i].classList.add('collapseProject');
+                projectWrapper.children[i].classList.remove('projectActive');
+                // projectWrapper.children[i].addEventListener('transitionend', ()=>{
+                    // projectWrapper.children[i].classList.remove('collapseProject');
+                    
+                    projectWrapper.children[i].classList.remove('expandProject');
+                    edieVideo.style.display = 'none';
+                    edieLogo.style.display = '';
+                // })
+            }
         }
     })
 </script>
