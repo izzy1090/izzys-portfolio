@@ -64,13 +64,23 @@
 }
 
 .expandProject {
-    width: 500px;
-    height: 281px;
-    transition: height 700ms, width 700ms;
+    animation: expandAnim 700ms ease-in forwards;
+}
+
+@keyframes expandAnim {
+    100%{
+        width: 500px;
+        height: 281px;
+    }
 }
 
 .collapseProject {
-    width: 100px;
-    height: 100%;
-    transition: width 700ms, height 700ms;
+    animation: collapseAnim 700ms ease-in forwards;
+}
+
+@keyframes collapseAnim {
+    100%{
+        width: 100px;
+        height: 100%;
+    }
 }
