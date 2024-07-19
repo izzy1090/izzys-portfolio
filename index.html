@@ -55,38 +55,50 @@
     // Other things site materials
     const otherThingsContainer = document.querySelector('.otherStuffContainer');
 
+    function expandProject(container, project){
+        container.style.width = '500px';
+        container.style.height = '281px';
+        container.style.transition = 'width 700ms ease-in, height 700ms ease-in';
+        container.addEventListener('transitionend', function handler(){
+            event.target.classList.add('projectActive');
+            if (project === 'edieProject')
+            {
+                edieLogo.style.display = 'none';
+                edieVideo.style.display = 'flex';
+            } 
+            container.removeEventListener('transitionend', handler)
+        })
+    }
+
+    function collapseProject(container){
+        container.style.width = '100px';
+        container.style.height = '100%';
+        container.addEventListener('transitionend', function handler(){
+            container.classList.remove('projectActive');
+            container.removeEventListener('transitionend', handler);
+        })
+    }
+
     // expands a project when a user hovers over a project
     window.addEventListener('click', function (event)
     {
         if (edieContainer.classList.contains('projectActive'))
         {
-            edieContainer.classList.remove('expandProject');
-            edieContainer.classList.remove('projectActive');
+            collapseProject(edieContainer);
             edieLogo.style.display = '';
             edieVideo.style.display = 'none';
         } else if (alitouraContainer.classList.contains('projectActive'))
         {
-            alitouraContainer.classList.remove('expandProject');
-            alitouraContainer.classList.remove('projectActive');
+            collapseProject(alitouraContainer);
         } else if (otherThingsContainer.classList.contains('projectActive'))
         {
-            otherThingsContainer.classList.remove('expandProject');
-            otherThingsContainer.classList.remove('projectActive');
+            collapseProject(otherThingsContainer);
         }
         for (let i = 0; i < project.length; i++)
         {
             if (project[i] === event.target.id)
             {
-                event.target.classList.add('expandProject');
-                event.target.addEventListener('animationend', function handler(){
-                    event.target.classList.add('projectActive');
-                    if (project[i] === 'edieProject')
-                    {
-                        edieLogo.style.display = 'none';
-                        edieVideo.style.display = 'flex';
-                    } 
-                    event.target.removeEventListener('animationend', handler)
-                })
+                expandProject(event.target, project[i])
             } 
             
         }

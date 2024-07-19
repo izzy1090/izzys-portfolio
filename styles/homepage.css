@@ -62,25 +62,3 @@
 .edieVideo {
     display: none;
 }
-
-.expandProject {
-    animation: expandAnim 700ms ease-in forwards;
-}
-
-@keyframes expandAnim {
-    100%{
-        width: 500px;
-        height: 281px;
-    }
-}
-
-.collapseProject {
-    animation: collapseAnim 700ms ease-in forwards;
-}
-
-@keyframes collapseAnim {
-    100%{
-        width: 100px;
-        height: 100%;
-    }
-}
