@@ -12,7 +12,8 @@
         <div>contact</div>
     </header>
     <main id="app">
-        <div class="background"></div>
+        <div id="background"></div>
+        <div id="edieProjectInfo">hello I'm some text</div>
         <div id="projectContainer"> 
             <div id="projectWrapper">
                 <div id="edieProject" class="edieContainer">
@@ -81,6 +82,18 @@
         })
     }
 
+    const edieProjectInfo = document.querySelector('#edieProjectInfo');
+    function openLightbox(){
+        document.querySelector('#background').style.display = 'block';
+        edieProjectInfo.style.display = 'block';
+        edieProjectInfo.style.position = 'absolute';
+    }
+
+    function closeLightbox(){
+        document.querySelector('#background').style.display = 'none';
+        edieProjectInfo.style.display = 'none';
+    }
+
     // expands a project when a user hovers over a project
     window.addEventListener('click', function (event)
     {
@@ -89,12 +102,11 @@
             collapseProject(edieContainer);
             edieLogo.style.display = '';
             edieVideo.style.display = 'none';
-            document.querySelector('.background').style.display = 'none';
+            closeLightbox();
         } else if (event.target.classList.contains('edieVideo'))
         {
            edieContainer.classList.add('moreProjectInfo');
-           document.querySelector('.background').style.display = 'block';
-          
+           openLightbox();          
         } 
         else if (alitouraContainer.classList.contains('projectActive'))
         {
@@ -108,7 +120,8 @@
         {
             if (project[i] === event.target.id)
             {
-                expandProject(event.target, project[i])
+                expandProject(event.target, project[i]);
+                break;
             } 
             
         }
