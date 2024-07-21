@@ -12,6 +12,7 @@
         <div>contact</div>
     </header>
     <main id="app">
+        <div class="background"></div>
         <div id="projectContainer"> 
             <div id="projectWrapper">
                 <div id="edieProject" class="edieContainer">
@@ -58,7 +59,7 @@
     function expandProject(container, project){
         container.style.width = '500px';
         container.style.height = '281px';
-        container.style.transition = 'width 700ms ease-in, height 700ms ease-in';
+        container.style.transition = 'width 900ms ease, height 900ms ease';
         container.addEventListener('transitionend', function handler(){
             event.target.classList.add('projectActive');
             if (project === 'edieProject')
@@ -71,6 +72,7 @@
     }
 
     function collapseProject(container){
+        container.classList.remove('moreProjectInfo');
         container.style.width = '100px';
         container.style.height = '100%';
         container.addEventListener('transitionend', function handler(){
@@ -82,18 +84,26 @@
     // expands a project when a user hovers over a project
     window.addEventListener('click', function (event)
     {
-        if (edieContainer.classList.contains('projectActive'))
+        if (edieContainer.classList.contains('projectActive') && !event.target.classList.contains('edieVideo'))
         {
             collapseProject(edieContainer);
             edieLogo.style.display = '';
             edieVideo.style.display = 'none';
-        } else if (alitouraContainer.classList.contains('projectActive'))
+            document.querySelector('.background').style.display = 'none';
+        } else if (event.target.classList.contains('edieVideo'))
+        {
+           edieContainer.classList.add('moreProjectInfo');
+           document.querySelector('.background').style.display = 'block';
+          
+        } 
+        else if (alitouraContainer.classList.contains('projectActive'))
         {
             collapseProject(alitouraContainer);
         } else if (otherThingsContainer.classList.contains('projectActive'))
         {
             collapseProject(otherThingsContainer);
         }
+
         for (let i = 0; i < project.length; i++)
         {
             if (project[i] === event.target.id)
