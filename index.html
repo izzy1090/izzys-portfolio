@@ -13,7 +13,6 @@
     </header>
     <main id="app">
         <div id="background"></div>
-        <div id="edieProjectInfo">hello I'm some text</div>
         <div id="projectContainer"> 
             <div id="projectWrapper">
                 <div id="edieProject" class="edieContainer">
@@ -61,6 +60,7 @@
         container.style.width = '500px';
         container.style.height = '281px';
         container.style.transition = 'width 900ms ease, height 900ms ease';
+        openLightbox(container);
         container.addEventListener('transitionend', function handler(){
             event.target.classList.add('projectActive');
             if (project === 'edieProject')
@@ -68,6 +68,7 @@
                 edieLogo.style.display = 'none';
                 edieVideo.style.display = 'flex';
             } 
+            
             container.removeEventListener('transitionend', handler)
         })
     }
@@ -80,18 +81,17 @@
             container.classList.remove('projectActive');
             container.removeEventListener('transitionend', handler);
         })
+        closeLightbox(container);
     }
 
-    const edieProjectInfo = document.querySelector('#edieProjectInfo');
-    function openLightbox(){
+    function openLightbox(container){
         document.querySelector('#background').style.display = 'block';
-        edieProjectInfo.style.display = 'block';
-        edieProjectInfo.style.position = 'absolute';
+        container.classList.add('moreProjectInfo');
     }
 
-    function closeLightbox(){
+    function closeLightbox(container){
         document.querySelector('#background').style.display = 'none';
-        edieProjectInfo.style.display = 'none';
+        container.classList.remove('moreProjectInfo');
     }
 
     // expands a project when a user hovers over a project
@@ -99,23 +99,19 @@
     {
         if (edieContainer.classList.contains('projectActive') && !event.target.classList.contains('edieVideo'))
         {
-            collapseProject(edieContainer);
             edieLogo.style.display = '';
             edieVideo.style.display = 'none';
-            closeLightbox();
-        } else if (event.target.classList.contains('edieVideo'))
-        {
-           edieContainer.classList.add('moreProjectInfo');
-           openLightbox();          
+            collapseProject(edieContainer);
         } 
         else if (alitouraContainer.classList.contains('projectActive'))
         {
             collapseProject(alitouraContainer);
-        } else if (otherThingsContainer.classList.contains('projectActive'))
+        } 
+        else if (otherThingsContainer.classList.contains('projectActive'))
         {
             collapseProject(otherThingsContainer);
         }
-
+       
         for (let i = 0; i < project.length; i++)
         {
             if (project[i] === event.target.id)
