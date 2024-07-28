@@ -67,7 +67,7 @@
    z-index: 100;
 }
 
-.background {
+#background {
     display: none;
     position: absolute;
     top: 0;
@@ -77,4 +77,9 @@
     height: 100%;
     z-index: 99;
     transition: all 1s ease;
+}
+
+#edieProjectInfo {
+    display: none;
+    z-index: 101;
 }
